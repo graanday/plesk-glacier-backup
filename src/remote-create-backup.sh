@@ -25,8 +25,7 @@ cd $PLESK_BACKUP_PATH
 LATEST_XML_FILE=$(ls -1tr *.xml | tail -1)
 BACKUP_FILE=/tmp/$LATEST_XML_FILE.tar.gz
 # Export the backup to a single file.
-/opt/psa/admin/bin/plesk_agent_manager export-dump-as-file --dump-file-name $PLESK_BACKUP_PATH/$LATEST_XML_FILE -v \
---output-file $BACKUP_FILE
+/sbin/plesk sbin pmm-ras --export-dump-as-file --dump-specification=$LATEST_XML_FILE --dump-file-specification=$BACKUP_FILE
 
 # Echo the filename so the local script can pick it up.
 echo +++ Uploading to Amazon Glacier +++ >> $LOG
